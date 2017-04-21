@@ -5,422 +5,58 @@ namespace Operations
 {
     public class Program
     {
-        public static Operation<double> Zero
-            => new Operation<double>(() => 0.0);
+        public static LazyAsync<double> NoLinq7 { get { var r0 = RandomDouble();  var r1 = RandomDouble(r0.Result); var r2 = RandomDouble(r1.Result); var r3 = RandomDouble(r2.Result); var r4 = RandomDouble(r3.Result); var r5 = RandomDouble(r4.Result); var r6 = RandomDouble(r5.Result); var r7 = RandomDouble(r6.Result); return r7; } }
+        public static LazyAsync<double> Linq7 { get { return from r0 in RandomDouble()  from r1 in RandomDouble(r0) from r2 in RandomDouble(r1) from r3 in RandomDouble(r2) from r4 in RandomDouble(r3) from r5 in RandomDouble(r4) from r6 in RandomDouble(r5) from r7 in RandomDouble(r6) select r7; } }
 
-        public static Operation<double> One
-            => new Operation<double>(() => 1.0);
+        public static LazyAsync<double> NoLinq150 { get { var r0 = RandomDouble();  var r1 = RandomDouble(r0.Result); var r2 = RandomDouble(r1.Result); var r3 = RandomDouble(r2.Result); var r4 = RandomDouble(r3.Result); var r5 = RandomDouble(r4.Result); var r6 = RandomDouble(r5.Result); var r7 = RandomDouble(r6.Result); var r8 = RandomDouble(r7.Result); var r9 = RandomDouble(r8.Result); var r10 = RandomDouble(r9.Result); var r11 = RandomDouble(r10.Result); var r12 = RandomDouble(r11.Result); var r13 = RandomDouble(r12.Result); var r14 = RandomDouble(r13.Result); var r15 = RandomDouble(r14.Result); var r16 = RandomDouble(r15.Result); var r17 = RandomDouble(r16.Result); var r18 = RandomDouble(r17.Result); var r19 = RandomDouble(r18.Result); var r20 = RandomDouble(r19.Result); var r21 = RandomDouble(r20.Result); var r22 = RandomDouble(r21.Result); var r23 = RandomDouble(r22.Result); var r24 = RandomDouble(r23.Result); var r25 = RandomDouble(r24.Result); var r26 = RandomDouble(r25.Result); var r27 = RandomDouble(r26.Result); var r28 = RandomDouble(r27.Result); var r29 = RandomDouble(r28.Result); var r30 = RandomDouble(r29.Result); var r31 = RandomDouble(r30.Result); var r32 = RandomDouble(r31.Result); var r33 = RandomDouble(r32.Result); var r34 = RandomDouble(r33.Result); var r35 = RandomDouble(r34.Result); var r36 = RandomDouble(r35.Result); var r37 = RandomDouble(r36.Result); var r38 = RandomDouble(r37.Result); var r39 = RandomDouble(r38.Result); var r40 = RandomDouble(r39.Result); var r41 = RandomDouble(r40.Result); var r42 = RandomDouble(r41.Result); var r43 = RandomDouble(r42.Result); var r44 = RandomDouble(r43.Result); var r45 = RandomDouble(r44.Result); var r46 = RandomDouble(r45.Result); var r47 = RandomDouble(r46.Result); var r48 = RandomDouble(r47.Result); var r49 = RandomDouble(r48.Result); var r50 = RandomDouble(r49.Result); var r51 = RandomDouble(r50.Result); var r52 = RandomDouble(r51.Result); var r53 = RandomDouble(r52.Result); var r54 = RandomDouble(r53.Result); var r55 = RandomDouble(r54.Result); var r56 = RandomDouble(r55.Result); var r57 = RandomDouble(r56.Result); var r58 = RandomDouble(r57.Result); var r59 = RandomDouble(r58.Result); var r60 = RandomDouble(r59.Result); var r61 = RandomDouble(r60.Result); var r62 = RandomDouble(r61.Result); var r63 = RandomDouble(r62.Result); var r64 = RandomDouble(r63.Result); var r65 = RandomDouble(r64.Result); var r66 = RandomDouble(r65.Result); var r67 = RandomDouble(r66.Result); var r68 = RandomDouble(r67.Result); var r69 = RandomDouble(r68.Result); var r70 = RandomDouble(r69.Result); var r71 = RandomDouble(r70.Result); var r72 = RandomDouble(r71.Result); var r73 = RandomDouble(r72.Result); var r74 = RandomDouble(r73.Result); var r75 = RandomDouble(r74.Result); var r76 = RandomDouble(r75.Result); var r77 = RandomDouble(r76.Result); var r78 = RandomDouble(r77.Result); var r79 = RandomDouble(r78.Result); var r80 = RandomDouble(r79.Result); var r81 = RandomDouble(r80.Result); var r82 = RandomDouble(r81.Result); var r83 = RandomDouble(r82.Result); var r84 = RandomDouble(r83.Result); var r85 = RandomDouble(r84.Result); var r86 = RandomDouble(r85.Result); var r87 = RandomDouble(r86.Result); var r88 = RandomDouble(r87.Result); var r89 = RandomDouble(r88.Result); var r90 = RandomDouble(r89.Result); var r91 = RandomDouble(r90.Result); var r92 = RandomDouble(r91.Result); var r93 = RandomDouble(r92.Result); var r94 = RandomDouble(r93.Result); var r95 = RandomDouble(r94.Result); var r96 = RandomDouble(r95.Result); var r97 = RandomDouble(r96.Result); var r98 = RandomDouble(r97.Result); var r99 = RandomDouble(r98.Result); var r100 = RandomDouble(r99.Result); var r101 = RandomDouble(r100.Result); var r102 = RandomDouble(r101.Result); var r103 = RandomDouble(r102.Result); var r104 = RandomDouble(r103.Result); var r105 = RandomDouble(r104.Result); var r106 = RandomDouble(r105.Result); var r107 = RandomDouble(r106.Result); var r108 = RandomDouble(r107.Result); var r109 = RandomDouble(r108.Result); var r110 = RandomDouble(r109.Result); var r111 = RandomDouble(r110.Result); var r112 = RandomDouble(r111.Result); var r113 = RandomDouble(r112.Result); var r114 = RandomDouble(r113.Result); var r115 = RandomDouble(r114.Result); var r116 = RandomDouble(r115.Result); var r117 = RandomDouble(r116.Result); var r118 = RandomDouble(r117.Result); var r119 = RandomDouble(r118.Result); var r120 = RandomDouble(r119.Result); var r121 = RandomDouble(r120.Result); var r122 = RandomDouble(r121.Result); var r123 = RandomDouble(r122.Result); var r124 = RandomDouble(r123.Result); var r125 = RandomDouble(r124.Result); var r126 = RandomDouble(r125.Result); var r127 = RandomDouble(r126.Result); var r128 = RandomDouble(r127.Result); var r129 = RandomDouble(r128.Result); var r130 = RandomDouble(r129.Result); var r131 = RandomDouble(r130.Result); var r132 = RandomDouble(r131.Result); var r133 = RandomDouble(r132.Result); var r134 = RandomDouble(r133.Result); var r135 = RandomDouble(r134.Result); var r136 = RandomDouble(r135.Result); var r137 = RandomDouble(r136.Result); var r138 = RandomDouble(r137.Result); var r139 = RandomDouble(r138.Result); var r140 = RandomDouble(r139.Result); var r141 = RandomDouble(r140.Result); var r142 = RandomDouble(r141.Result); var r143 = RandomDouble(r142.Result); var r144 = RandomDouble(r143.Result); var r145 = RandomDouble(r144.Result); var r146 = RandomDouble(r145.Result); var r147 = RandomDouble(r146.Result); var r148 = RandomDouble(r147.Result); var r149 = RandomDouble(r148.Result); var r150 = RandomDouble(r149.Result); return r150; } }
+        public static LazyAsync<double> Linq150 { get { return from r0 in RandomDouble()  from r1 in RandomDouble(r0) from r2 in RandomDouble(r1) from r3 in RandomDouble(r2) from r4 in RandomDouble(r3) from r5 in RandomDouble(r4) from r6 in RandomDouble(r5) from r7 in RandomDouble(r6) from r8 in RandomDouble(r7) from r9 in RandomDouble(r8) from r10 in RandomDouble(r9) from r11 in RandomDouble(r10) from r12 in RandomDouble(r11) from r13 in RandomDouble(r12) from r14 in RandomDouble(r13) from r15 in RandomDouble(r14) from r16 in RandomDouble(r15) from r17 in RandomDouble(r16) from r18 in RandomDouble(r17) from r19 in RandomDouble(r18) from r20 in RandomDouble(r19) from r21 in RandomDouble(r20) from r22 in RandomDouble(r21) from r23 in RandomDouble(r22) from r24 in RandomDouble(r23) from r25 in RandomDouble(r24) from r26 in RandomDouble(r25) from r27 in RandomDouble(r26) from r28 in RandomDouble(r27) from r29 in RandomDouble(r28) from r30 in RandomDouble(r29) from r31 in RandomDouble(r30) from r32 in RandomDouble(r31) from r33 in RandomDouble(r32) from r34 in RandomDouble(r33) from r35 in RandomDouble(r34) from r36 in RandomDouble(r35) from r37 in RandomDouble(r36) from r38 in RandomDouble(r37) from r39 in RandomDouble(r38) from r40 in RandomDouble(r39) from r41 in RandomDouble(r40) from r42 in RandomDouble(r41) from r43 in RandomDouble(r42) from r44 in RandomDouble(r43) from r45 in RandomDouble(r44) from r46 in RandomDouble(r45) from r47 in RandomDouble(r46) from r48 in RandomDouble(r47) from r49 in RandomDouble(r48) from r50 in RandomDouble(r49) from r51 in RandomDouble(r50) from r52 in RandomDouble(r51) from r53 in RandomDouble(r52) from r54 in RandomDouble(r53) from r55 in RandomDouble(r54) from r56 in RandomDouble(r55) from r57 in RandomDouble(r56) from r58 in RandomDouble(r57) from r59 in RandomDouble(r58) from r60 in RandomDouble(r59) from r61 in RandomDouble(r60) from r62 in RandomDouble(r61) from r63 in RandomDouble(r62) from r64 in RandomDouble(r63) from r65 in RandomDouble(r64) from r66 in RandomDouble(r65) from r67 in RandomDouble(r66) from r68 in RandomDouble(r67) from r69 in RandomDouble(r68) from r70 in RandomDouble(r69) from r71 in RandomDouble(r70) from r72 in RandomDouble(r71) from r73 in RandomDouble(r72) from r74 in RandomDouble(r73) from r75 in RandomDouble(r74) from r76 in RandomDouble(r75) from r77 in RandomDouble(r76) from r78 in RandomDouble(r77) from r79 in RandomDouble(r78) from r80 in RandomDouble(r79) from r81 in RandomDouble(r80) from r82 in RandomDouble(r81) from r83 in RandomDouble(r82) from r84 in RandomDouble(r83) from r85 in RandomDouble(r84) from r86 in RandomDouble(r85) from r87 in RandomDouble(r86) from r88 in RandomDouble(r87) from r89 in RandomDouble(r88) from r90 in RandomDouble(r89) from r91 in RandomDouble(r90) from r92 in RandomDouble(r91) from r93 in RandomDouble(r92) from r94 in RandomDouble(r93) from r95 in RandomDouble(r94) from r96 in RandomDouble(r95) from r97 in RandomDouble(r96) from r98 in RandomDouble(r97) from r99 in RandomDouble(r98) from r100 in RandomDouble(r99) from r101 in RandomDouble(r100) from r102 in RandomDouble(r101) from r103 in RandomDouble(r102) from r104 in RandomDouble(r103) from r105 in RandomDouble(r104) from r106 in RandomDouble(r105) from r107 in RandomDouble(r106) from r108 in RandomDouble(r107) from r109 in RandomDouble(r108) from r110 in RandomDouble(r109) from r111 in RandomDouble(r110) from r112 in RandomDouble(r111) from r113 in RandomDouble(r112) from r114 in RandomDouble(r113) from r115 in RandomDouble(r114) from r116 in RandomDouble(r115) from r117 in RandomDouble(r116) from r118 in RandomDouble(r117) from r119 in RandomDouble(r118) from r120 in RandomDouble(r119) from r121 in RandomDouble(r120) from r122 in RandomDouble(r121) from r123 in RandomDouble(r122) from r124 in RandomDouble(r123) from r125 in RandomDouble(r124) from r126 in RandomDouble(r125) from r127 in RandomDouble(r126) from r128 in RandomDouble(r127) from r129 in RandomDouble(r128) from r130 in RandomDouble(r129) from r131 in RandomDouble(r130) from r132 in RandomDouble(r131) from r133 in RandomDouble(r132) from r134 in RandomDouble(r133) from r135 in RandomDouble(r134) from r136 in RandomDouble(r135) from r137 in RandomDouble(r136) from r138 in RandomDouble(r137) from r139 in RandomDouble(r138) from r140 in RandomDouble(r139) from r141 in RandomDouble(r140) from r142 in RandomDouble(r141) from r143 in RandomDouble(r142) from r144 in RandomDouble(r143) from r145 in RandomDouble(r144) from r146 in RandomDouble(r145) from r147 in RandomDouble(r146) from r148 in RandomDouble(r147) from r149 in RandomDouble(r148) from r150 in RandomDouble(r149) select r150; } }
 
-        public static Operation<double> MultiplyByTwo(double x)
-            => new Operation<double>(() => x * 2.0);
-
-        public static Operation<double> AddOne(double x)
-            => new Operation<double>(() => x + 1.0);
-
-        public static Operation<double> Square(double x)
-            => new Operation<double>(() => x * x);
-
-        public static Operation<double> Cube(double x)
-            => new Operation<double>(() => x * x * x);
-
-        public static Operation<string> SquareSquare(double x)
-            => Square(x).Select(y => $"value: {x}");
-
-        public static Operation<double> RandomDouble
-            => new Operation<double>(() => GetRandomDouble());
-
-        public static double GetRandomDouble()
+        public static LazyAsync<double> RandomDouble(double seed = 0)
         {
-            var random = new Random(DateTime.Now.Millisecond);
-            return random.NextDouble();
+            return new LazyAsync<double>(()
+                => GetRandomDouble(
+                    (seed != 0) ? (int)seed * 100 : DateTime.Now.Millisecond));
+        }
+
+        public static double GetRandomDouble(int seed)
+        {
+            var random = new Random(seed);
+            var result = random.NextDouble();
+            //Console.WriteLine($"{nameof(GetRandomDouble)} gets called: {result}");
+            return result;
+        }
+
+        public static void MeasureOperation<T>(
+            Func<LazyAsync<T>> getOperation,
+            string queryName)
+        {
+            var swBldt = new Stopwatch();
+            var swExec = new Stopwatch();
+
+            Console.WriteLine($"Measuring query {queryName}");
+            Console.WriteLine("Building the operation...");
+            swBldt.Start();
+            var operation = getOperation();
+            swBldt.Stop();
+
+            Console.WriteLine("Executing the operation...");
+            swExec.Start();
+            var result = operation.Result;
+            swExec.Stop();
+
+            //Console.WriteLine($"Operation Result: {operation.Result}");
+            Console.WriteLine($"Build time {swBldt.ElapsedTicks}, {swBldt.ElapsedMilliseconds}");
+            Console.WriteLine($"Exctn time {swExec.ElapsedTicks}, {swExec.ElapsedMilliseconds}");
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public static void Main(string[] args)
         {
-            Console.WriteLine("Started");
-            Console.WriteLine("Processing...");
-
-            var swBldt = new Stopwatch();
-            swBldt.Start();
-            var query =
-                from r1 in RandomDouble
-                from r2 in RandomDouble
-                from r3 in RandomDouble
-                from r4 in RandomDouble
-                from r5 in RandomDouble
-                from r6 in RandomDouble
-                from r7 in RandomDouble
-                from r8 in RandomDouble
-                from r9 in RandomDouble
-                from r10 in RandomDouble
-                from r11 in RandomDouble
-                from r12 in RandomDouble
-                from r13 in RandomDouble
-                from r14 in RandomDouble
-                // from r15 in RandomDouble
-                // from r16 in RandomDouble
-                // from r17 in RandomDouble
-                // from r18 in RandomDouble
-                // from r19 in RandomDouble
-                // from r20 in RandomDouble
-                // from r21 in RandomDouble
-                // from r22 in RandomDouble
-                // from r23 in RandomDouble
-                // from r24 in RandomDouble
-                // from r25 in RandomDouble
-                // from r26 in RandomDouble
-                // from r27 in RandomDouble
-                // from r28 in RandomDouble
-                // from r29 in RandomDouble
-                // from r30 in RandomDouble
-                // from r110 in RandomDouble
-                // from r111 in RandomDouble
-                // from r112 in RandomDouble
-                // from r113 in RandomDouble
-                // from r114 in RandomDouble
-
-                // from r115 in RandomDouble
-                // from r116 in RandomDouble
-                // from r117 in RandomDouble
-                // from r118 in RandomDouble
-                // from r119 in RandomDouble
-                // from r120 in RandomDouble
-                // from r121 in RandomDouble
-                // from r122 in RandomDouble
-                // from r123 in RandomDouble
-                // from r124 in RandomDouble
-                // from r125 in RandomDouble
-                // from r126 in RandomDouble
-                // from r127 in RandomDouble
-                // from r128 in RandomDouble
-                // from r129 in RandomDouble
-                // from r130 in RandomDouble
-                // from r210 in RandomDouble
-                // from r211 in RandomDouble
-                // from r212 in RandomDouble
-                // from r213 in RandomDouble
-                // from r214 in RandomDouble
-                // from r215 in RandomDouble
-                // from r216 in RandomDouble
-                // from r217 in RandomDouble
-                // from r218 in RandomDouble
-                // from r219 in RandomDouble
-                // from r220 in RandomDouble
-                // from r221 in RandomDouble
-                // from r222 in RandomDouble
-                // from r223 in RandomDouble
-                // from r224 in RandomDouble
-                // from r225 in RandomDouble
-                // from r226 in RandomDouble
-                // from r227 in RandomDouble
-                // from r228 in RandomDouble
-                // from r229 in RandomDouble
-
-                // from r230 in RandomDouble
-                // from r1110 in RandomDouble
-                // from r1111 in RandomDouble
-                // from r1112 in RandomDouble
-                // from r1113 in RandomDouble
-                // from r1114 in RandomDouble
-                // from r1115 in RandomDouble
-                // from r1116 in RandomDouble
-                // from r1117 in RandomDouble
-                // from r1118 in RandomDouble
-                // from r1119 in RandomDouble
-                // from r1120 in RandomDouble
-                // from r1121 in RandomDouble
-                // from r1122 in RandomDouble
-                // from r1123 in RandomDouble
-                // from r1124 in RandomDouble
-                // from r1125 in RandomDouble
-                // from r1126 in RandomDouble
-                // from r1127 in RandomDouble
-                // from r1128 in RandomDouble
-                // from r1129 in RandomDouble
-                // from r1130 in RandomDouble
-                // from r1210 in RandomDouble
-                // from r1211 in RandomDouble
-                // from r1212 in RandomDouble
-                // from r1213 in RandomDouble
-                // from r1214 in RandomDouble
-                // from r1215 in RandomDouble
-                // from r1216 in RandomDouble
-                // from r1217 in RandomDouble
-                // from r1218 in RandomDouble
-                // from r1219 in RandomDouble
-                // from r1220 in RandomDouble
-                // from r1221 in RandomDouble
-                // from r1222 in RandomDouble
-                // from r1223 in RandomDouble
-                // from r1224 in RandomDouble
-                // from r1225 in RandomDouble
-                // from r1226 in RandomDouble
-                // from r1227 in RandomDouble
-                // from r1228 in RandomDouble
-                // from r1229 in RandomDouble
-                // from r1230 in RandomDouble
-                // from r2110 in RandomDouble
-                // from r2111 in RandomDouble
-                // from r2112 in RandomDouble
-                // from r2113 in RandomDouble
-                // from r2114 in RandomDouble
-                // from r2115 in RandomDouble
-                // from r2116 in RandomDouble
-                // from r2117 in RandomDouble
-                // from r2118 in RandomDouble
-                // from r2119 in RandomDouble
-                // from r2120 in RandomDouble
-                // from r2121 in RandomDouble
-                // from r2122 in RandomDouble
-                // from r2123 in RandomDouble
-                // from r2124 in RandomDouble
-                // from r2125 in RandomDouble
-                // from r2126 in RandomDouble
-                // from r2127 in RandomDouble
-                // from r2128 in RandomDouble
-                // from r2129 in RandomDouble
-                // from r2130 in RandomDouble
-                // from r2210 in RandomDouble
-                // from r2211 in RandomDouble
-                // from r2212 in RandomDouble
-                // from r2213 in RandomDouble
-                // from r2214 in RandomDouble
-                // from r2215 in RandomDouble
-                // from r2216 in RandomDouble
-                // from r2217 in RandomDouble
-                // from r2218 in RandomDouble
-                // from r2219 in RandomDouble
-                // from r2220 in RandomDouble
-                // from r2221 in RandomDouble
-                // from r2222 in RandomDouble
-                // from r2223 in RandomDouble
-                // from r2224 in RandomDouble
-                // from r2225 in RandomDouble
-                // from r2226 in RandomDouble
-                // from r2227 in RandomDouble
-                // from r2228 in RandomDouble
-                // from r2229 in RandomDouble
-                // from r2230 in RandomDouble
-                // from r3110 in RandomDouble
-                // from r3111 in RandomDouble
-                // from r3112 in RandomDouble
-                // from r3113 in RandomDouble
-                // from r3114 in RandomDouble
-                // from r3115 in RandomDouble
-                // from r3116 in RandomDouble
-                // from r3117 in RandomDouble
-                // from r3118 in RandomDouble
-                // from r3119 in RandomDouble
-                // from r3120 in RandomDouble
-                // from r3121 in RandomDouble
-                // from r3122 in RandomDouble
-                // from r3123 in RandomDouble
-                // from r3124 in RandomDouble
-                // from r3125 in RandomDouble
-                // from r3126 in RandomDouble
-                // from r3127 in RandomDouble
-                // from r3128 in RandomDouble
-                // from r3129 in RandomDouble
-                // from r3130 in RandomDouble
-                // from r3210 in RandomDouble
-                // from r3211 in RandomDouble
-                // from r3212 in RandomDouble
-                // from r3213 in RandomDouble
-                // from r3214 in RandomDouble
-                // from r3215 in RandomDouble
-                // from r3216 in RandomDouble
-                // from r3217 in RandomDouble
-                // from r3218 in RandomDouble
-                // from r3219 in RandomDouble
-                // from r3220 in RandomDouble
-                // from r3221 in RandomDouble
-                // from r3222 in RandomDouble
-                // from r3223 in RandomDouble
-                // from r3224 in RandomDouble
-                // from r3225 in RandomDouble
-                // from r3226 in RandomDouble
-                // from r3227 in RandomDouble
-                // from r3228 in RandomDouble
-                // from r3229 in RandomDouble
-                // from r3230 in RandomDouble
-                // from r4110 in RandomDouble
-                // from r4111 in RandomDouble
-                // from r4112 in RandomDouble
-                // from r4113 in RandomDouble
-                // from r4114 in RandomDouble
-                // from r4115 in RandomDouble
-                // from r4116 in RandomDouble
-                // from r4117 in RandomDouble
-                // from r4118 in RandomDouble
-                // from r4119 in RandomDouble
-                // from r4120 in RandomDouble
-                // from r4121 in RandomDouble
-                // from r4122 in RandomDouble
-                // from r4123 in RandomDouble
-                // from r4124 in RandomDouble
-                // from r4125 in RandomDouble
-                // from r4126 in RandomDouble
-                // from r4127 in RandomDouble
-                // from r4128 in RandomDouble
-                // from r4129 in RandomDouble
-                // from r4130 in RandomDouble
-                // from r4210 in RandomDouble
-                // from r4211 in RandomDouble
-                // from r4212 in RandomDouble
-                // from r4213 in RandomDouble
-                // from r4214 in RandomDouble
-                // from r4215 in RandomDouble
-                // from r4216 in RandomDouble
-                // from r4217 in RandomDouble
-                // from r4218 in RandomDouble
-                // from r4219 in RandomDouble
-                // from r4220 in RandomDouble
-                // from r4221 in RandomDouble
-                // from r4222 in RandomDouble
-                // from r4223 in RandomDouble
-                // from r4224 in RandomDouble
-                // from r4225 in RandomDouble
-                // from r4226 in RandomDouble
-                // from r4227 in RandomDouble
-                // from r4228 in RandomDouble
-                // from r4229 in RandomDouble
-                // from r4230 in RandomDouble
-                // from r5110 in RandomDouble
-                // from r5111 in RandomDouble
-                // from r5112 in RandomDouble
-                // from r5113 in RandomDouble
-                // from r5114 in RandomDouble
-                // from r5115 in RandomDouble
-                // from r5116 in RandomDouble
-                // from r5117 in RandomDouble
-                // from r5118 in RandomDouble
-                // from r5119 in RandomDouble
-                // from r5120 in RandomDouble
-                // from r5121 in RandomDouble
-                // from r5122 in RandomDouble
-                // from r5123 in RandomDouble
-                // from r5124 in RandomDouble
-                // from r5125 in RandomDouble
-                // from r5126 in RandomDouble
-                // from r5127 in RandomDouble
-                // from r5128 in RandomDouble
-                // from r5129 in RandomDouble
-                // from r5130 in RandomDouble
-                // from r5210 in RandomDouble
-                // from r5211 in RandomDouble
-                // from r5212 in RandomDouble
-                // from r5213 in RandomDouble
-                // from r5214 in RandomDouble
-                // from r5215 in RandomDouble
-                // from r5216 in RandomDouble
-                // from r5217 in RandomDouble
-                // from r5218 in RandomDouble
-                // from r5219 in RandomDouble
-                // from r5220 in RandomDouble
-                // from r5221 in RandomDouble
-                // from r5222 in RandomDouble
-                // from r5223 in RandomDouble
-                // from r5224 in RandomDouble
-                // from r5225 in RandomDouble
-                // from r5226 in RandomDouble
-                // from r5227 in RandomDouble
-                // from r5228 in RandomDouble
-                // from r5229 in RandomDouble
-                // from r5230 in RandomDouble
-                // from r6110 in RandomDouble
-                // from r6111 in RandomDouble
-                // from r6112 in RandomDouble
-                // from r6113 in RandomDouble
-                // from r6114 in RandomDouble
-                // from r6115 in RandomDouble
-                // from r6116 in RandomDouble
-                // from r6117 in RandomDouble
-                // from r6118 in RandomDouble
-                // from r6119 in RandomDouble
-                // from r6120 in RandomDouble
-                // from r6121 in RandomDouble
-                // from r6122 in RandomDouble
-                // from r6123 in RandomDouble
-                // from r6124 in RandomDouble
-                // from r6125 in RandomDouble
-                // from r6126 in RandomDouble
-                // from r6127 in RandomDouble
-                // from r6128 in RandomDouble
-                // from r6129 in RandomDouble
-                // from r6130 in RandomDouble
-                // from r6210 in RandomDouble
-                // from r6211 in RandomDouble
-                // from r6212 in RandomDouble
-                // from r6213 in RandomDouble
-                // from r6214 in RandomDouble
-                // from r6215 in RandomDouble
-                // from r6216 in RandomDouble
-                // from r6217 in RandomDouble
-                // from r6218 in RandomDouble
-                // from r6219 in RandomDouble
-                // from r6220 in RandomDouble
-                // from r6221 in RandomDouble
-                // from r6222 in RandomDouble
-                // from r6223 in RandomDouble
-                // from r6224 in RandomDouble
-                // from r6225 in RandomDouble
-                // from r6226 in RandomDouble
-                // from r6227 in RandomDouble
-                // from r6228 in RandomDouble
-                // from r6229 in RandomDouble
-                // from r6230 in RandomDouble
-                // from r7110 in RandomDouble
-                // from r7111 in RandomDouble
-                // from r7112 in RandomDouble
-                // from r7113 in RandomDouble
-                // from r7114 in RandomDouble
-                // from r7115 in RandomDouble
-                // from r7116 in RandomDouble
-                // from r7117 in RandomDouble
-                // from r7118 in RandomDouble
-                // from r7119 in RandomDouble
-                // from r7120 in RandomDouble
-                // from r7121 in RandomDouble
-                // from r7122 in RandomDouble
-                // from r7123 in RandomDouble
-                // from r7124 in RandomDouble
-                // from r7125 in RandomDouble
-                // from r7126 in RandomDouble
-                // from r7127 in RandomDouble
-                // from r7128 in RandomDouble
-                // from r7129 in RandomDouble
-                // from r7130 in RandomDouble
-                // from r7210 in RandomDouble
-                // from r7211 in RandomDouble
-                // from r7212 in RandomDouble
-                // from r7213 in RandomDouble
-                // from r7214 in RandomDouble
-                // from r7215 in RandomDouble
-                // from r7216 in RandomDouble
-                // from r7217 in RandomDouble
-                // from r7218 in RandomDouble
-                // from r7219 in RandomDouble
-                // from r7220 in RandomDouble
-                // from r7221 in RandomDouble
-                // from r7222 in RandomDouble
-                // from r7223 in RandomDouble
-                // from r7224 in RandomDouble
-                let s = r1  + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9 + r10 + r11 + r12 + r13 + r14
-                from one in One
-                from two in AddOne(one)
-                from squareBound in SquareSquare(two)
-                from g in MultiplyByTwo(s * s * s)
-                select squareBound;
-            swBldt.Stop();
-
-            var swExec = new Stopwatch();
-            swExec.Start();
-            var result = query.Result;
-            swExec.Stop();
-
-            Console.WriteLine(query.Result);
-            Console.WriteLine($"Query bldt time: {swBldt.Elapsed}");
-            Console.WriteLine($"Query exec time: {swExec.Elapsed}");
+            MeasureOperation<double>(() => Linq150, nameof(Linq150));
+            // MeasureOperation<double>(() => NoLinq150, nameof(NoLinq150));
+            // MeasureOperation<double>(
+            //     () => BigQuery.ReallyBigQuery, nameof(NoLinq150));
         }
     }
 }
