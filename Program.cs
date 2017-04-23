@@ -174,6 +174,8 @@ namespace Operations
 
         public static void Main(string[] args)
         {
+            OperationTests.Run().Wait();
+
             //MeasureGx<double>(() => GxQuery);
 
             //MeasureGxAsync<double>(() => GxAsyncQuery).Wait();
@@ -183,7 +185,7 @@ namespace Operations
             //MeasureFx<double>(() => FxQuery).Wait();
 
             //MeasureFx<double>(() => LinqFx150).Wait();
-            MeasureGx<double>(() => LinqGx150);
+            //MeasureGx<double>(() => LinqGx150);
         }
     }
 }
