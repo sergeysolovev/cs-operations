@@ -180,7 +180,7 @@ namespace Operations
 
         public static void Main(string[] args)
         {
-            ZxTests.TestBuildFamily().Wait();
+            OperationTests.TestBuildFamily().Wait();
 
             //OperationTests.Run().Wait();
 

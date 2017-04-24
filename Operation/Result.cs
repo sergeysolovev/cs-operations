@@ -14,6 +14,9 @@ namespace Operations
         public static Result<T> None<T>(string error, Dictionary<string, object> props = null)
             => new Result<T>(new Exception(error), props);
 
+        public static Result<T> None<T>()
+            => new Result<T>(null);
+
         public static Result<T> None<U, T>(Result<U> source)
             => new Result<T>(source.Error, source.Properties);
     }

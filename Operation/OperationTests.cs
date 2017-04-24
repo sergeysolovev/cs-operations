@@ -5,15 +5,16 @@ using System.Collections.Generic;
 
 namespace Operations
 {
-    public class ZxTests
+    public class OperationTests
     {
-        public static Zx<Family> BuildFamily =>
+        public static Operation<Family> BuildFamily =>
             from yuni in People.Someone("Sergey", isHappy: true)
             from sergey in People.Someone("Yuni", isHappy: true)
             from couple in People.MakeCouple(yuni, sergey)
             let happyCouple = couple.Happy()
             from ourKid in People.Someone("No name yet", isHappy: true)
             from family in People.MakeFamily(couple: happyCouple, kids: new List<Person> { ourKid })
+            let happyKids = from kid in family.Kids where kid.IsHappy select kid
             where happyCouple.IsHappy
             where family.Kids.Any()
             where yuni.IsHappy && sergey.IsHappy && ourKid.IsHappy
@@ -21,7 +22,7 @@ namespace Operations
 
         public static async Task TestBuildFamily()
         {
-            var familyBuilder = ZxTests.BuildFamily;
+            var familyBuilder = OperationTests.BuildFamily;
             Console.WriteLine("Initializing...");
             await Task.Delay(500);
             Console.WriteLine("Building the family...");
@@ -100,14 +101,14 @@ namespace Operations
 
         public static class People
         {
-            public static Zx<Person> Sergey => Someone("Sergey Solovev", isHappy: false);
-            public static Zx<Person> Yuni => Someone("Wahyuni Nur Aini Fuandono", isHappy: true);
-            public static Zx<Person> Someone(string name, bool isHappy)
-                => Zx.Get(() => new Person(name, isHappy));
-            public static Zx<Couple> MakeCouple(Person wife, Person husband)
-                => Zx.Get(() => new Couple(wife, husband));
-            public static Zx<Family> MakeFamily(Couple couple, IEnumerable<Person> kids)
-                => Zx.Get(() => new Family(couple.Wife, couple.Husband, kids));
+            public static Operation<Person> Someone(string name, bool isHappy)
+                => Operation.Get(() => new Person(name, isHappy));
+
+            public static Operation<Couple> MakeCouple(Person wife, Person husband)
+                => Operation.Get(() => new Couple(wife, husband));
+
+            public static Operation<Family> MakeFamily(Couple couple, IEnumerable<Person> kids)
+                => Operation.Get(() => new Family(couple.Wife, couple.Husband, kids));
         }
     }
 }
