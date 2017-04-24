@@ -54,6 +54,9 @@ namespace Operations
         public static Operation<T> Get<T>(Func<Task<Result<T>>> valueFactory)
             => new Operation<T>(valueFactory);
 
+        public static Operation<T> Get<T>(Func<Task<T>> valueFactory)
+            => Get<T>(() => Task.Run(() => Result.Just(valueFactory().Result)));
+
         public static Operation<T> Get<T>(Func<T> value)
             => Get<T>(() => Task.FromResult(Result.Just(value())));
 
