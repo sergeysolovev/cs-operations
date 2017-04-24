@@ -48,6 +48,12 @@ namespace Operations
                 () => IsNotNull ? New<TResult>() : NewFrom<TResult>(Result),
                 xr => IsNotNull ? Task.Run(() => selector(Result)) : xr);
 
+        public Operation<TResult> ProceedWith<TResult>(Func<TSource, Operation<TResult>> selector)
+            where TResult : IAssignable, new()
+            => new Operation<TResult>(
+                () => IsNotNull ? New<TResult>() : NewFrom<TResult>(Result),
+                xr => IsNotNull ? selector(Result).Value : xr);
+
         public Operation<TResult> SelectMany<TNext, TResult>(
             Func<TSource, Operation<TNext>> selector,
             Func<TSource, TNext, TResult> resultSelector)

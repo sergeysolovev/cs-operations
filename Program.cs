@@ -49,7 +49,7 @@ namespace Operations
             var result = await lazyAsync;
             swExec.Stop();
 
-            Console.WriteLine($"Result: {lazyAsync.Value}");
+            Console.WriteLine($"Result: {lazyAsync.Result}");
             Console.WriteLine($"Build time {swBldt.ElapsedTicks}, {swBldt.ElapsedMilliseconds}");
             Console.WriteLine($"Exctn time {swExec.ElapsedTicks}, {swExec.ElapsedMilliseconds}");
             Console.WriteLine();
@@ -172,9 +172,17 @@ namespace Operations
             return result;
         }
 
+        public static async Task<double> Test()
+        {
+            return await GxAsyncQuery;
+        }
+
+
         public static void Main(string[] args)
         {
-            OperationTests.Run().Wait();
+            ZxTests.TestBuildFamily().Wait();
+
+            //OperationTests.Run().Wait();
 
             //MeasureGx<double>(() => GxQuery);
 

@@ -13,7 +13,7 @@ namespace Operations
             => Get<T>(() => Task.FromResult(Result.Just(value())));
     }
 
-    public class Zx<T>
+    public sealed class Zx<T>
     {
         private readonly LazyAsync<Result<T>> valueFactory;
         private T Value => valueFactory.Result.Value;

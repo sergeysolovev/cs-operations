@@ -18,7 +18,7 @@ namespace Operations
             => new Result<T>(source.Error, source.Properties);
     }
 
-    public class Result<T>
+    public sealed class Result<T>
     {
         public readonly T Value;
         public readonly bool HasValue;
