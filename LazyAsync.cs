@@ -13,7 +13,8 @@ namespace Operations
     {
         private readonly Lazy<Task<T>> source;
 
-        public T Value                      => source.Value.Result;
+        public T Result                     => source.Value.Result;
+        public Task<T> Value                => source.Value;
         public TaskAwaiter<T> GetAwaiter()  => source.Value.GetAwaiter();
 
         public LazyAsync(Func<T> valueFactory) :
@@ -33,16 +34,16 @@ namespace Operations
 
         public LazyAsync<TResult> Select<TResult>(
             Func<T, TResult> selector)
-            => new LazyAsync<TResult>(() => selector(Value));
+            => new LazyAsync<TResult>(() => selector(Result));
 
         public LazyAsync<TResult> Bind<TResult>(
             Func<T, LazyAsync<TResult>> selector)
-            => new LazyAsync<TResult>(() => selector(Value).Value);
+            => new LazyAsync<TResult>(() => selector(Result).Result);
 
         private Func<T, TResult> Compose<TNext, TResult>(
             Func<T, LazyAsync<TNext>> selector,
             Func<T, TNext, TResult> resultSelector)
-            => x => resultSelector(x, selector(x).Value);
+            => x => resultSelector(x, selector(x).Result);
     }
 
     static class LazyAsyncExtensions
@@ -56,16 +57,16 @@ namespace Operations
         public static Func<TSource, TResult> Compose<TSource, TNext, TResult>(
             Func<TSource, LazyAsync<TNext>> selector,
             Func<TSource, TNext, TResult> resultSelector)
-            => x => resultSelector(x, selector(x).Value);
+            => x => resultSelector(x, selector(x).Result);
 
         public static LazyAsync<TResult> Select<TSource, TResult>(
             this LazyAsync<TSource> source,
             Func<TSource, TResult> selector)
-            => new LazyAsync<TResult>(() => selector(source.Value));
+            => new LazyAsync<TResult>(() => selector(source.Result));
 
         private static LazyAsync<TResult> Bind<TSource, TResult>(
             this LazyAsync<TSource> source,
             Func<TSource, LazyAsync<TResult>> selector)
-            => new LazyAsync<TResult>(() => selector(source.Value).Value);
+            => new LazyAsync<TResult>(() => selector(source.Result).Result);
     }
 }

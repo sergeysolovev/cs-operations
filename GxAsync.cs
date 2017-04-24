@@ -10,7 +10,7 @@ namespace Operations
         private LazyAsync<T> lazyAsync;
         public bool HasPredicate => (has != null);
         public bool HasValue => HasPredicate ? has.Value : true;
-        public T Value => lazyAsync.Value;
+        public T Value => lazyAsync.Result;
         public TaskAwaiter<T> GetAwaiter() => lazyAsync.GetAwaiter();
 
         public GxAsync(Func<Task<T>> valueFactory)
