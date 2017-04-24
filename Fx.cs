@@ -10,7 +10,7 @@ namespace Operations
 
         public bool HasValue                        => Result.HasValue;
         public T Value                              => Result.Value;
-        public Maybe<T> Result                      => source.Value;
+        public Maybe<T> Result                      => source.Result;
         public TaskAwaiter<Maybe<T>> GetAwaiter()   => source.GetAwaiter();
 
         public LazyAsyncMaybe(Func<Maybe<T>> valueFactory)
