@@ -73,6 +73,6 @@ namespace Operations
 
         // todo: only for testing purposes
         public static Operation<T> Get<T>(Func<T> value)
-            => Get<T>(() => Task.Run(() => Result.Just(value())));
+            => Get<T>(() => Task.FromResult(Result.Just(value())));
     }
 }

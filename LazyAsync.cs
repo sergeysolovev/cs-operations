@@ -24,7 +24,7 @@ namespace Operations
 
         public LazyAsync(Func<Task<T>> valueFactory)
         {
-            source = new Lazy<Task<T>>(valueFactory);
+            source = new Lazy<Task<T>>(valueFactory, false);
         }
 
         public LazyAsync<TResult> SelectMany<TNext, TResult>(
