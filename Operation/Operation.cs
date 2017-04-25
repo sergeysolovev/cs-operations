@@ -7,26 +7,32 @@ namespace Operations
     public sealed class Operation<T>
     {
         private readonly LazyAsync<Result<T>> valueFactory;
-        private T value => valueFactory.Result.Value;
-        private Result<T> result => valueFactory.Value.Result;
-        private Task<Result<T>> resultAsync => valueFactory.Value;
-        private bool HasValue => result.HasValue;
+
+        private Task<Result<T>> ResultAsync => valueFactory.Value;
+        private bool HasValue               => ResultAsync.Result.HasValue;
+        private T Value                     => valueFactory.Result.Value;
 
         public Operation(Func<Task<Result<T>>> valueFactory)
         {
             this.valueFactory = new LazyAsync<Result<T>>(valueFactory);
         }
 
+        public Operation(Func<Task<T>> valueFactory)
+            : this(() => ContinueWith(valueFactory()))
+        {
+        }
+
         public TaskAwaiter<Result<T>> GetAwaiter()
-            => resultAsync.GetAwaiter();
+            => ResultAsync.GetAwaiter();
 
         public Operation<T> Where(Func<T, bool> predicate)
-            => new Operation<T>(() => HasValue && predicate(value) ?
-                resultAsync : None<T>(result));
+            => new Operation<T>(() => HasValue && predicate(Value) ?
+                ResultAsync : ContinueWithNone<T>(ResultAsync));
 
         public Operation<U> Select<U>(Func<T, U> selector)
             => new Operation<U>(() => HasValue ?
-                Just(selector(value)) : None<U>(result));
+                ContinueWith<U>(ResultAsync, selector) :
+                ContinueWithNone<U>(ResultAsync));
 
         public Operation<U> SelectMany<V, U>(
             Func<T, Operation<V>> selector,
@@ -34,19 +40,24 @@ namespace Operations
             => Select(Compose(selector, resultSelector));
 
         public Operation<U> Bind<U>(Func<T, Operation<U>> selector)
-            => new Operation<U>(() => HasValue ?
-                selector(value).resultAsync : None<U>(result));
+            => Select(x => selector(x).Value);
 
         private Func<T, U> Compose<V, U>(
             Func<T, Operation<V>> selector,
             Func<T, V, U> resultSelector)
-            => x => resultSelector(x, selector(x).value);
+            => x => resultSelector(x, selector(x).Value);
 
-        private Task<Result<U>> None<U>(Result<T> source)
-            => Task.FromResult(Result.None<T, U>(source));
+        private Task<Result<U>> ContinueWithNone<U>(
+            Task<Result<T>> source)
+            => source.ContinueWith(x => Result.None<T, U>(source.Result));
 
-        private Task<Result<U>> Just<U>(U value)
-            => Task.Run(() => Result.Just(value));
+        private Task<Result<U>> ContinueWith<U>(
+            Task<Result<T>> source,
+            Func<T, U> selector)
+            => source.ContinueWith(x => Result.Just<U>(selector(x.Result.Value)));
+
+        private static Task<Result<T>> ContinueWith(Task<T> source)
+            => source.ContinueWith(x => Result.Just<T>(source.Result));
     }
 
     public static class Operation
@@ -55,12 +66,13 @@ namespace Operations
             => new Operation<T>(valueFactory);
 
         public static Operation<T> Get<T>(Func<Task<T>> valueFactory)
-            => Get<T>(() => Task.Run(() => Result.Just(valueFactory().Result)));
-
-        public static Operation<T> Get<T>(Func<T> value)
-            => Get<T>(() => Task.FromResult(Result.Just(value())));
+            => new Operation<T>(valueFactory);
 
         public static Operation<T> None<T>()
             => Get<T>(() => Task.FromResult(Result.None<T>()));
+
+        // todo: only for testing purposes
+        public static Operation<T> Get<T>(Func<T> value)
+            => Get<T>(() => Task.Run(() => Result.Just(value())));
     }
 }

@@ -22,9 +22,8 @@ namespace Operations
 
         public static async Task TestBuildFamily()
         {
+            Console.WriteLine("Building a family builder...");
             var familyBuilder = OperationTests.BuildFamily;
-            Console.WriteLine("Initializing...");
-            await Task.Delay(500);
             Console.WriteLine("Building the family...");
             var family = await familyBuilder;
             if (!family.HasValue)
