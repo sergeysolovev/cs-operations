@@ -6,15 +6,15 @@ namespace Operations
 {
     public sealed class Operation<T>
     {
-        private readonly LazyAsync<Result<T>> valueFactory;
+        private readonly Lazy<Task<Result<T>>> valueFactory;
 
         private Task<Result<T>> ResultAsync => valueFactory.Value;
         private bool HasValue               => ResultAsync.Result.HasValue;
-        private T Value                     => valueFactory.Result.Value;
+        private T Value                     => valueFactory.Value.Result.Value;
 
         public Operation(Func<Task<Result<T>>> valueFactory)
         {
-            this.valueFactory = new LazyAsync<Result<T>>(valueFactory);
+            this.valueFactory = new Lazy<Task<Result<T>>>(valueFactory);
         }
 
         public Operation(Func<Task<T>> valueFactory)
