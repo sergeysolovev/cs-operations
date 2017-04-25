@@ -18,7 +18,7 @@ namespace Operations
         }
 
         public Operation(Func<Task<T>> valueFactory)
-            : this(() => ContinueWith(valueFactory()))
+            : this(() => Continue(valueFactory()))
         {
         }
 
@@ -31,7 +31,7 @@ namespace Operations
 
         public Operation<U> Select<U>(Func<T, U> selector)
             => new Operation<U>(() => HasValue ?
-                ContinueWith<U>(ResultAsync, selector) :
+                Continue<U>(ResultAsync, selector) :
                 ContinueWithNone<U>(ResultAsync));
 
         public Operation<U> SelectMany<V, U>(
@@ -51,12 +51,12 @@ namespace Operations
             Task<Result<T>> source)
             => source.ContinueWith(x => Result.None<T, U>(source.Result));
 
-        private Task<Result<U>> ContinueWith<U>(
+        private Task<Result<U>> Continue<U>(
             Task<Result<T>> source,
             Func<T, U> selector)
             => source.ContinueWith(x => Result.Just<U>(selector(x.Result.Value)));
 
-        private static Task<Result<T>> ContinueWith(Task<T> source)
+        private static Task<Result<T>> Continue(Task<T> source)
             => source.ContinueWith(x => Result.Just<T>(source.Result));
     }
 
@@ -68,11 +68,13 @@ namespace Operations
         public static Operation<T> Get<T>(Func<Task<T>> valueFactory)
             => new Operation<T>(valueFactory);
 
-        public static Operation<T> None<T>()
-            => Get<T>(() => Task.FromResult(Result.None<T>()));
+        public static Operation<T> Get<T>(Func<Result<T>> valueFactory)
+            => new Operation<T>(() => Task.Run(valueFactory));
 
-        // todo: only for testing purposes
         public static Operation<T> Get<T>(Func<T> value)
             => Get<T>(() => Task.FromResult(Result.Just(value())));
+
+        public static Operation<T> None<T>()
+            => Get<T>(() => Task.FromResult(Result.None<T>()));
     }
 }
