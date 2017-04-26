@@ -12,7 +12,7 @@ namespace Operations
             => new Result<T>(error, props);
 
         public static IResult<T> None<T>(string error, Dictionary<string, object> props = null)
-            => new Result<T>(new Exception(error), props);
+            => new Result<T>(new OperationException(error), props);
 
         public static IResult<T> None<T>()
             => new Result<T>(null);
