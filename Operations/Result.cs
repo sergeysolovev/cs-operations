@@ -21,7 +21,7 @@ namespace Operations
             => new Result<T>(source.Error, source.Properties);
     }
 
-    public sealed class Result<T> : IResult<T>
+    internal sealed class Result<T> : IResult<T>
     {
         public T Value { get; }
         public bool HasValue { get; }
