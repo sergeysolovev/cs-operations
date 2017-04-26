@@ -2,12 +2,13 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using Operations.Linq;
 
 namespace Operations
 {
     public class OperationTests
     {
-        public static Operation<Family> BuildFamily =>
+        public static IOperation<Family> BuildFamily =>
             from yuni in People.Someone("Sergey", isHappy: true)
             from sergey in People.Someone("Yuni", isHappy: true)
             from couple in People.MakeCouple(yuni, sergey)
@@ -25,7 +26,7 @@ namespace Operations
             Console.WriteLine("Building a family builder...");
             var familyBuilder = OperationTests.BuildFamily;
             Console.WriteLine("Building the family...");
-            var family = await familyBuilder;
+            var family = await familyBuilder.ExecuteAsync();
             if (!family.HasValue)
             {
                 Console.WriteLine("Family is not succeeded");
@@ -100,13 +101,13 @@ namespace Operations
 
         public static class People
         {
-            public static Operation<Person> Someone(string name, bool isHappy)
+            public static IOperation<Person> Someone(string name, bool isHappy)
                 => Operation.Get(() => new Person(name, isHappy));
 
-            public static Operation<Couple> MakeCouple(Person wife, Person husband)
+            public static IOperation<Couple> MakeCouple(Person wife, Person husband)
                 => Operation.Get(() => new Couple(wife, husband));
 
-            public static Operation<Family> MakeFamily(Couple couple, IEnumerable<Person> kids)
+            public static IOperation<Family> MakeFamily(Couple couple, IEnumerable<Person> kids)
                 => Operation.Get(() => new Family(couple.Wife, couple.Husband, kids));
         }
     }

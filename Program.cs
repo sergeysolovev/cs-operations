@@ -23,7 +23,7 @@ namespace Operations
             return (--a);
         }
 
-        public static async Task MeasureOperation<T>(Func<Operation<T>> operationFactory)
+        public static async Task MeasureOperation<T>(Func<IOperation<T>> operationFactory)
         {
             var swBldt = new Stopwatch();
             var swExec = new Stopwatch();
@@ -55,10 +55,10 @@ namespace Operations
             return result;
         }
 
-        public static Operation<double> GetSqrt(double value = double.MaxValue)
+        public static IOperation<double> GetSqrt(double value = double.MaxValue)
             => Operation.Get(() => Sqrt(value));
 
-        public static Operation<long> FindNthPrime(long n)
+        public static IOperation<long> FindNthPrime(long n)
             => Operation.Get(() => NthPrime(n));
 
         // public static Operation<string> PrimeNumbersQuery10 => from s0 in FindNthPrime(1) from s1 in FindNthPrime(s0) from s2 in FindNthPrime(s1) from s3 in FindNthPrime(s2) from s4 in FindNthPrime(s3) from s5 in FindNthPrime(s4) from s6 in FindNthPrime(s5) from s7 in FindNthPrime(s6) from s8 in FindNthPrime(s7) from s9 in FindNthPrime(s8) from s10 in FindNthPrime(s9) select $"{s9}th prime number is {s10}";

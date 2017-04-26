@@ -5,28 +5,28 @@ namespace Operations
 {
     public static class Result
     {
-        public static Result<T> Just<T>(T value, Dictionary<string, object> props = null)
+        public static IResult<T> Just<T>(T value, Dictionary<string, object> props = null)
             => new Result<T>(value, props);
 
-        public static Result<T> None<T>(Exception error, Dictionary<string, object> props = null)
+        public static IResult<T> None<T>(Exception error, Dictionary<string, object> props = null)
             => new Result<T>(error, props);
 
-        public static Result<T> None<T>(string error, Dictionary<string, object> props = null)
+        public static IResult<T> None<T>(string error, Dictionary<string, object> props = null)
             => new Result<T>(new Exception(error), props);
 
-        public static Result<T> None<T>()
+        public static IResult<T> None<T>()
             => new Result<T>(null);
 
-        public static Result<T> None<U, T>(Result<U> source)
+        public static IResult<T> None<U, T>(IResult<U> source)
             => new Result<T>(source.Error, source.Properties);
     }
 
-    public sealed class Result<T>
+    public sealed class Result<T> : IResult<T>
     {
-        public readonly T Value;
-        public readonly bool HasValue;
-        public readonly Dictionary<string, object> Properties;
-        public readonly Exception Error;
+        public T Value { get; }
+        public bool HasValue { get; }
+        public Dictionary<string, object> Properties { get; }
+        public Exception Error { get; }
 
         internal Result()
         {
