@@ -6,11 +6,12 @@ namespace Operations
 {
     internal class Operation<T> : IOperation<T>
     {
-        private readonly Lazy<Task<IResult<T>>> valueFactory;
+        private readonly Func<Task<IResult<T>>> valueFactory;
 
-        public Task<IResult<T>> ExecuteAsync() => valueFactory.Value;
+        public Task<IResult<T>> ExecuteAsync() => valueFactory();
 
-        public Operation(Func<Task<IResult<T>>> valueFactory)
-            => this.valueFactory = new Lazy<Task<IResult<T>>>(valueFactory);
+        public Operation(Func<Task<IResult<T>>> valueFactory) => this.valueFactory =
+            valueFactory ?? throw new ArgumentNullException(nameof(valueFactory));
+
     }
 }
