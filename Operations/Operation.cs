@@ -9,11 +9,8 @@ namespace Operations.Linq
         public static IOperation<T> Get<T>(Func<Task<IResult<T>>> valueFactory)
             => new Operation<T>(valueFactory);
 
-        public static IOperation<T> Get<T>(Func<ValueTask<IResult<T>>> valueFactory)
-            => new ValueOperation<T>(valueFactory);
-
         public static IOperation<T> Get<T>(Func<IResult<T>> valueFactory)
-            => new ValueOperation<T>(() => new ValueTask<IResult<T>>(valueFactory()));
+            => new Operation<T>(() => Task.FromResult(valueFactory()));
 
         public static IOperation<T> Get<T>(Func<Task<T>> valueFactory)
             => new Operation<T>(() => Wrap(valueFactory()));
