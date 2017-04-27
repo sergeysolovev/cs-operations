@@ -7,7 +7,7 @@ namespace Operations
     {
         T Value { get; }
         bool HasValue { get; }
-        Dictionary<string, object> Properties { get; }
+        IDictionary<string, object> Properties { get; }
         Exception Error { get; }
     }
 }
