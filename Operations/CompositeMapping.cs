@@ -10,10 +10,9 @@ namespace Operations
         private readonly IMapping<T> composite;
 
         public CompositeMapping(IEnumerable<IMapping<T>> mappings)
-        {
-            composite = mappings?.Compose() ?? throw new ArgumentNullException(nameof(mappings));
-        }
+            => composite = Throw.IfNull(mappings, nameof(mappings)).Compose();
 
-        public IOperation<T> Map(IOperation<T> arg) => composite.Map(arg);
+        public IOperation<T> Map(IOperation<T> arg)
+            => composite.Map(arg);
     }
 }

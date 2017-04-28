@@ -5,6 +5,17 @@ using Operations.Linq;
 
 namespace Operations
 {
+    internal class Mapping<T> : IMapping<T>
+    {
+        private readonly Func<IOperation<T>, IOperation<T>> map;
+
+        public Mapping(Func<IOperation<T>, IOperation<T>> mapping)
+            => map = Throw.IfNull(mapping, nameof(mapping));
+
+        public IOperation<T> Map(IOperation<T> arg)
+            => map(arg);
+    }
+
     public static class Mapping
     {
         public static IMapping<T> Id<T>()
@@ -14,12 +25,12 @@ namespace Operations
             => new Mapping<T>(mapping);
 
         public static IMapping<T> Get<T>(Func<T, T> mapping)
-            => Get<T>(x => Operation.Get<T>(() => mapping(x.GetValue())));
+            => Get<T>(x => Operation.Get<T>(() => mapping(x.ExecuteAsync().Result.Value)));
 
         public static IMapping<T> Compose<T>(this IEnumerable<IMapping<T>> mappings)
             => Enumerable.Aggregate(mappings, Id<T>(), Compose);
 
-        public static IMapping<T> Compose<T>(this IMapping<T> self, IMapping<T> with)
-            => Mapping.Get<T>(x => self.Map(with.Map(x)));
+        public static IMapping<T> Compose<T>(this IMapping<T> left, IMapping<T> right)
+            => Mapping.Get<T>(x => left.Map(right.Map(x)));
     }
 }
