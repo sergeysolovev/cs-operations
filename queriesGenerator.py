@@ -1,25 +1,15 @@
-def linq(k):
-    lines = ["from r" + str(n) + " in RandomDouble(r" + str(n-1) + ")" for n in range(1, k+1)]
+def op(k):
+    lines = ["from s" + str(n) + " in FindNthPrime(s" + str(n-1) + ")" for n in range(1, k+1)]
     body = reduce(lambda x, y: x + " " + y, lines, "")
-    return "public static LazyAsync<double> Linq%s { get { return from r0 in RandomDouble() %s select r%s; } }" % (k, body, k)
+    return "public static Operation<string> PrimeNumbersQuery%s => from s0 in FindNthPrime(1) %s select $\"{s%s}th prime number is {s%s}\";" % (k, body, k-1, k)
 
-def linqfx(k):
-    lines = ["from r" + str(n) + " in RandomDoubleFx(r" + str(n-1) + ")" for n in range(1, k+1)]
+def sqrt(k):
+    lines = ["from r" + str(n) + " in GetSqrt(r" + str(n-1) + ")" for n in range(1, k+1)]
     body = reduce(lambda x, y: x + " " + y, lines, "")
-    return "public static Fx<double> LinqFx%s { get { return from r0 in RandomDoubleFx() %s select r%s; } }" % (k, body, k)
+    return "public static Operation<double> GetSqrt%s { get { return from r0 in GetSqrt() %s select r%s; } }" % (k, body, k)
 
-def linqgx(k):
-    lines = ["from r" + str(n) + " in RandomDoubleGx(r" + str(n-1) + ")" for n in range(1, k+1)]
-    body = reduce(lambda x, y: x + " " + y, lines, "")
-    return "public static Fx<double> LinqGx%s { get { return from r0 in RandomDoubleFx() %s select r%s; } }" % (k, body, k)
-
-
-def nolinq(k):
-    lines = ["var r" + str(n) + " = RandomDouble(r" + str(n-1) + ".Result);" for n in range(1, k+1)]
-    body = reduce(lambda x, y: x + " " + y, lines, "")
-    return "public static LazyAsync<double> NoLinq%s { get { var r0 = RandomDouble(); %s return r%s; } }" % (k, body, k)
 
 csfile = open("Queries.cs.txt", "w")
-csfile.write(linqfx(150) + "\r\n")
-csfile.write(linqgx(150) + "\r\n")
+csfile.write(op(10) + "\r\n")
+csfile.write(sqrt(150) + "\r\n")
 csfile.close()
