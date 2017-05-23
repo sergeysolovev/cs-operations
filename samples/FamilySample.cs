@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Operations
 {
-    public class OperationTests
+    public class FamilySample
     {
         public static IOperation<Family> BuildFamily =>
             from yuni in People.Someone("Sergey", isHappy: true)
@@ -23,7 +23,7 @@ namespace Operations
         public static async Task TestBuildFamily()
         {
             Console.WriteLine("Building a family builder...");
-            var familyBuilder = OperationTests.BuildFamily;
+            var familyBuilder = FamilySample.BuildFamily;
             Console.WriteLine("Building the family...");
             var family = await familyBuilder.ExecuteAsync();
             if (!family.Succeeded)
