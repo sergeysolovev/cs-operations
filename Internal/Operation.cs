@@ -4,14 +4,17 @@ using System.Threading.Tasks;
 
 namespace Operations
 {
+    /// <summary>
+    /// Immutable, stateless
+    /// </summary>
     internal class Operation<T> : IOperation<T>
     {
-        private readonly Func<Task<IResult<T>>> executeAsync;
+        private readonly Func<Task<IContext<T>>> valueFactory;
 
-        public Task<IResult<T>> ExecuteAsync()
-            => executeAsync();
+        public Task<IContext<T>> ExecuteAsync()
+            => valueFactory();
 
-        public Operation(Func<Task<IResult<T>>> valueFactory)
-            => executeAsync = Throw.IfNull(valueFactory, nameof(valueFactory));
+        public Operation(Func<Task<IContext<T>>> valueFactory)
+            => this.valueFactory = Throw.IfNull(valueFactory, nameof(valueFactory));
     }
 }

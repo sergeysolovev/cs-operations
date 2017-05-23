@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
-using Operations.Linq;
 
 namespace Operations
 {
@@ -27,11 +26,11 @@ namespace Operations
             var familyBuilder = OperationTests.BuildFamily;
             Console.WriteLine("Building the family...");
             var family = await familyBuilder.ExecuteAsync();
-            if (!family.HasValue)
+            if (!family.Succeeded)
             {
                 Console.WriteLine("Family is not succeeded");
             }
-            Console.WriteLine(family.Value);
+            Console.WriteLine(family.Result);
         }
 
         public class Person
@@ -102,13 +101,13 @@ namespace Operations
         public static class People
         {
             public static IOperation<Person> Someone(string name, bool isHappy)
-                => Operation.Get(() => new Person(name, isHappy));
+                => Operation.Return(() => new Person(name, isHappy));
 
             public static IOperation<Couple> MakeCouple(Person wife, Person husband)
-                => Operation.Get(() => new Couple(wife, husband));
+                => Operation.Return(() => new Couple(wife, husband));
 
             public static IOperation<Family> MakeFamily(Couple couple, IEnumerable<Person> kids)
-                => Operation.Get(() => new Family(couple.Wife, couple.Husband, kids));
+                => Operation.Return(() => new Family(couple.Wife, couple.Husband, kids));
         }
     }
 }
